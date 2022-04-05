@@ -1,0 +1,21 @@
+{
+    "actionButtons": 
+    {
+        "commands": [
+            {
+                "cwd": "${workspaceFolder}/Bin",
+                "name": "Build",
+                "color": "white",
+                "singleInstance": true,
+                "command": "make all"
+            },
+            {
+                "cwd": "${workspaceFolder}/Bin",
+                "name": "Clean",
+                "color": "white",
+                "singleInstance": true,
+                "command": "make clean"
+            }
+        ]
+    }
+}
