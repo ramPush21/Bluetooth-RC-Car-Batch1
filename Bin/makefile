@@ -6,13 +6,16 @@
 ##################################### Development parameters ######################################
 
 #CPP include directory
-CPP_INC_DIR := 
+CPP_INC_DIR := -I../LIB
+CPP_INC_DIR += -I../MCAL/MDIO
 
 #CPP source files
 CPP_SRC_FILES := ../main.cpp
+CPP_SRC_FILES += ../MCAL/MDIO/MDIO_program.cpp
 
 #CPP object files
 CPP_OBJ_FILES := main.o
+CPP_OBJ_FILES += MDIO_program.o
 
 #ELF file name
 ELF_FILE := main.elf
