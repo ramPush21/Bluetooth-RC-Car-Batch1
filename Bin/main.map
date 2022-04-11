@@ -28,6 +28,7 @@ Linker script and memory map
 LOAD d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr4/crtatmega8.o
 LOAD main.o
 LOAD MDIO_program.o
+LOAD MPWM_program.o
 LOAD d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a
 LOAD d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr4\libm.a
 START GROUP
@@ -135,7 +136,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x232
+.text           0x00000000      0x318
  *(.vectors)
  .vectors       0x00000000       0x26 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr4/crtatmega8.o
                 0x00000000                __vector_default
@@ -222,86 +223,90 @@ END GROUP
                 0x00000126                _ZN11mdioClass_t11setPinValueEh
                 0x0000018a                _ZN11mdioClass_t14togglePinValueEv
                 0x000001ba                _ZN11mdioClass_t11getPinValueEPh
- .text          0x000001f2        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
- .text          0x000001f2        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
- .text          0x000001f2        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
- .text          0x000001f2        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
- .text          0x000001f2        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
-                0x000001f2                . = ALIGN (0x2)
+ .text          0x000001f2       0xa8 MPWM_program.o
+                0x000001f2                _ZN11mpwmClass_tC2Eh
+                0x000001f2                _ZN11mpwmClass_tC1Eh
+                0x00000242                _ZN11mpwmClass_t9updatePWMEhh
+ .text          0x0000029a        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+ .text          0x0000029a        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+ .text          0x0000029a        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+ .text          0x0000029a        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+ .text          0x0000029a        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x0000029a                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x000001f2       0x30 main.o
-                0x000001f2                main
+ .text.startup  0x0000029a       0x6e main.o
+                0x0000029a                main
  .text.libgcc.mul
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.div
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
- .text.libgcc   0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.mul
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.div
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
- .text.libgcc   0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.prologue
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.builtins
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.fmul
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.mul
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.div
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
- .text.libgcc   0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+ .text.libgcc   0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.prologue
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.builtins
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.fmul
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.fixed
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.mul
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
  .text.libgcc.div
-                0x00000222        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
- .text.libgcc   0x00000222        0xc d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
-                0x00000222                __tablejump2__
+                0x00000308        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+ .text.libgcc   0x00000308        0xc d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x00000308                __tablejump2__
  .text.libgcc.prologue
-                0x0000022e        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x00000314        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
  .text.libgcc.builtins
-                0x0000022e        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x00000314        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
  .text.libgcc.fmul
-                0x0000022e        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x00000314        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
  .text.libgcc.fixed
-                0x0000022e        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
-                0x0000022e                . = ALIGN (0x2)
+                0x00000314        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x00000314                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000022e        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
-                0x0000022e                _exit
-                0x0000022e                exit
+ .fini9         0x00000314        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x00000314                _exit
+                0x00000314                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -320,11 +325,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000022e        0x4 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+ .fini0         0x00000314        0x4 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000232                _etext = .
+                0x00000318                _etext = .
 
-.data           0x00800060       0x12 load address 0x00000232
+.data           0x00800060       0x12 load address 0x00000318
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr4/crtatmega8.o
@@ -333,6 +338,7 @@ END GROUP
                 0x00800060                gu8Arr_pinArray
                 0x00800066                gu8Arr_portArray
                 0x0080006c                gu8Arr_ddrArray
+ .data          0x00800072        0x0 MPWM_program.o
  .data          0x00800072        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .data          0x00800072        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .data          0x00800072        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
@@ -347,29 +353,35 @@ END GROUP
                 0x00800072                _edata = .
                 0x00800072                PROVIDE (__data_end, .)
 
-.bss            0x00800072        0x2
+.bss            0x00800072        0x9
                 0x00800072                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800072        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr4/crtatmega8.o
- .bss           0x00800072        0x2 main.o
-                0x00800072                dioPin_PC2
- .bss           0x00800074        0x0 MDIO_program.o
- .bss           0x00800074        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
- .bss           0x00800074        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
- .bss           0x00800074        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
- .bss           0x00800074        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
- .bss           0x00800074        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+ .bss           0x00800072        0x9 main.o
+                0x00800072                pwmChannel3
+                0x00800073                pwmChannel2
+                0x00800074                pwmChannel1
+                0x00800075                dioPin_PB3
+                0x00800077                dioPin_PB2
+                0x00800079                dioPin_PB1
+ .bss           0x0080007b        0x0 MDIO_program.o
+ .bss           0x0080007b        0x0 MPWM_program.o
+ .bss           0x0080007b        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+ .bss           0x0080007b        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+ .bss           0x0080007b        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+ .bss           0x0080007b        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+ .bss           0x0080007b        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
  *(.bss*)
  *(COMMON)
-                0x00800074                PROVIDE (__bss_end, .)
-                0x00000232                __data_load_start = LOADADDR (.data)
-                0x00000244                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0080007b                PROVIDE (__bss_end, .)
+                0x00000318                __data_load_start = LOADADDR (.data)
+                0x0000032a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800074        0x0
+.noinit         0x0080007b        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800074                _end = .
+                0x0080007b                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -414,6 +426,7 @@ END GROUP
  .comment       0x00000000       0x11 main.o
                                  0x12 (size before relaxing)
  .comment       0x00000011       0x12 MDIO_program.o
+ .comment       0x00000011       0x12 MPWM_program.o
 
 .note.gnu.avr.deviceinfo
                 0x00000000       0x3c
