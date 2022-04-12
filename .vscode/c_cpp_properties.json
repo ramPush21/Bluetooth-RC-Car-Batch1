@@ -6,7 +6,9 @@
                 "${workspaceFolder}/**",
                 "D:\\Documents\\RAM Push\\RP Development tools\\RP Development tools\\AVR Toolchain\\avr\\include",
                 "LIB",
-                "MCAL/MDIO"
+                "MCAL/MDIO",
+                "MCAL/MPWM",
+                "MCAL/MUART"
             ],
             "defines": [
                 "_DEBUG",

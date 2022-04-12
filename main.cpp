@@ -1,29 +1,39 @@
 #include "LSTD_TYPES.h"
 #include "LBIT_MATH.h"
+#include "LINTERRUPTS.h"
 #include "MDIO_interface.h"
-#include "MPWM_interface.h"
+#include "MUART_interface.h"
 
+#include "util/delay.h"
 
-mdioClass_t dioPin_PB1(PORTB, PIN1);
-mdioClass_t dioPin_PB2(PORTB, PIN2);
-mdioClass_t dioPin_PB3(PORTB, PIN3);
+mdioClass_t dioPin_PD0(PORTD, PIN0);
+mdioClass_t dioPin_PD1(PORTD, PIN1);
 
-mpwmClass_t pwmChannel1(PWM_CHANNEL_1);
-mpwmClass_t pwmChannel2(PWM_CHANNEL_2);
-mpwmClass_t pwmChannel3(PWM_CHANNEL_3);
+muartClass_t uartData(BAUD_RATE_9600BPS, NO_INTERRUPTS_USED);
 
 int main(void)
 {
-    dioPin_PB1.setPinDirection(OUTPUT);
-    dioPin_PB2.setPinDirection(OUTPUT);
-    dioPin_PB3.setPinDirection(OUTPUT);
+    u8_t x = 0;
 
-    pwmChannel1.updatePWM(PWM_15KHZ, 128);
-    pwmChannel2.updatePWM(PWM_15KHZ, 50);
-    pwmChannel3.updatePWM(PWM_2KHZ, 155);
+    ENABLE_INTERRUPTS;
+
+    dioPin_PD0.setPinDirection(INPUT_FLOAT);
+    dioPin_PD1.setPinDirection(OUTPUT);
 
     while(1)
-    {
+    {   
+        uartData.recvByte(&x);
+
+        if(x)
+        {
+            uartData.sendStream((u8_t*)"Ahmed\r\n", 7);
+
+            x = 0;
+        }
+        else
+        {
+            /*Do nothing*/
+        }
     }
 
     return 0;

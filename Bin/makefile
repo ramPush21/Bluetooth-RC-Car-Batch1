@@ -1,7 +1,7 @@
 #Author: Ahmed Ashraf
 #Purpose: This makefile is used for avr development purposes
-#Version: v1.1
-#Date: 05-04-2022
+#Version: v1.3
+#Date: 12-04-2022
 
 ##################################### Development parameters ######################################
 
@@ -9,16 +9,19 @@
 CPP_INC_DIR := -I../LIB
 CPP_INC_DIR += -I../MCAL/MDIO
 CPP_INC_DIR += -I../MCAL/MPWM
+CPP_INC_DIR += -I../MCAL/MUART
 
 #CPP source files
 CPP_SRC_FILES := ../main.cpp
 CPP_SRC_FILES += ../MCAL/MDIO/MDIO_program.cpp
 CPP_SRC_FILES += ../MCAL/MPWM/MPWM_program.cpp
+CPP_SRC_FILES += ../MCAL/MUART/MUART_program.cpp
 
 #CPP object files
 CPP_OBJ_FILES := main.o
 CPP_OBJ_FILES += MDIO_program.o
 CPP_OBJ_FILES += MPWM_program.o
+CPP_OBJ_FILES += MUART_program.o
 
 #ELF file name
 ELF_FILE := main.elf
