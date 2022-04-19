@@ -35,10 +35,13 @@
 /****************************************************************************************************************************/
 
 /*Global variable used to indicate if the data has transmitted or not*/
-static volatile u8_t gu8_transFlag = FLAG_RESET;
+static volatile u8_t gu8_transFlag = NEW_DATA_TRANSMITTED;
 
 /*Global variable used to indicate if there's a data to be received or not*/
 static volatile u8_t gu8_recvFlag = FLAG_RESET;
+
+/*Global variable used to get the received data*/
+static volatile u8_t gu8_receivedData;
 
 /****************************************************************************************************************************/
 /*                                                   Functions' definitions                                                 */
@@ -46,11 +49,8 @@ static volatile u8_t gu8_recvFlag = FLAG_RESET;
 
 muartClass_t::muartClass_t(u16_t au16_baudRate, u8_t au8_useInterruptOption)
 {
-    /*Enabling the Tx and Rx pins*/
-    MUART_UCSRB = ENABLE_TX_RX_OPERATION;
-
-    /*Setting the passed interrupt options*/
-    MUART_UCSRB |= au8_useInterruptOption;
+    /*Enabling the Tx and Rx pins and setting the passed interrupt options*/
+    MUART_UCSRB = ENABLE_TX_RX_OPERATION | au8_useInterruptOption;
 
     /*Setting the asynchronous mode, 1 stop bit, 8 bits character size and no parity bit used*/
     MUART_UCSRC = ASYNC_1SB_8BCS_NO_PARITY;
@@ -162,7 +162,7 @@ void muartClass_t::recvByte_interrupt(u8_t* pu8_dataByte)
         gu8_recvFlag = FLAG_RESET;
 
         /*Getting the received data byte*/
-        *pu8_dataByte = MUART_UDR;
+        *pu8_dataByte = gu8_receivedData;
     }
     else
     {
@@ -187,6 +187,9 @@ ISR(USART_TXC_VECT)
 /*Rx complete ISR*/
 ISR(USART_RXC_VECT)
 {
+    /*Reading the data register*/
+    gu8_receivedData = MUART_UDR;
+
     /*Assuring that there's new data to be received*/
     gu8_recvFlag = NEW_DATA_RECEIVED;
 }

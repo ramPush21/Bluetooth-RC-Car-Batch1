@@ -8,7 +8,11 @@
                 "LIB",
                 "MCAL/MDIO",
                 "MCAL/MPWM",
-                "MCAL/MUART"
+                "MCAL/MUART",
+                "HAL/HLED",
+                "HAL/HBUZZER",
+                "HAL/HMOT",
+                "HAL/HBLTH"
             ],
             "defines": [
                 "_DEBUG",
