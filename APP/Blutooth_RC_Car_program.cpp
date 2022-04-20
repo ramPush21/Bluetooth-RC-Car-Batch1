@@ -19,6 +19,8 @@
 #include "HLED_interface.h"
 #include "HBUZZER_interface.h"
 #include "HMOT_interface.h"
+#include "STTS_interface.h"
+#include "Bluetooth_RC_Car_private.h"
 #include "Blutooth_RC_Car_interface.h"
 #include "Blutooth_RC_Car_cfg.h"
 
@@ -27,6 +29,10 @@
 /****************************************************************************************************************************/
 
 #define SPEED_SECTION_VALUE    (23)
+#define MAX_MOTOR_SPEED        (255)
+#define HAZARD_STATUS_ON       (1)
+#define HAZARD_STATUS_OFF      (2)
+#define HAZARD_TIMING          (20)
 
 /****************************************************************************************************************************/
 /*                                                  Important class objects and variables                                   */
@@ -50,8 +56,17 @@ hmotClass_t obj_rightMotor(RIGHT_MOTOR);
 /*Global object used to control the left motor*/
 hmotClass_t obj_leftMotor(LEFT_MOTOR);
 
+/*Global object used to control the time triggered system with specific tick time*/
+sttsClass_t obj_tts(SYSTEM_TICK_TIME);
+
 /*Global variable used to hold the bluetooth command data received*/
 static u8_t gu8_blthData;
+
+/*Global variable used to hold the hazard enable status*/
+static u8_t gu8_hazardStatus;
+
+/*Global variable used to hold the hazard time counter*/
+static u8_t gu8_hazardTimeCounter;
 
 /****************************************************************************************************************************/
 /*                                                     System tasks                                                         */
@@ -59,11 +74,14 @@ static u8_t gu8_blthData;
 
 void system_init(void)
 {
+    /*Selcting sleep mode*/
+    SELECT_SLEEP_MODE(IDLE_MODE);
+
     /*Return from this function*/
     return;
 }
 
-void system_getInput(void)
+static void system_getInput(void)
 {
     /*Getting the bluetooth data*/
     obj_blthCommunication.getData(&gu8_blthData);
@@ -72,7 +90,7 @@ void system_getInput(void)
     return;
 }
 
-void system_processing_and_update(void)
+static void system_processing_and_update(void)
 {
     /*Local static variable used to hold the motors speed*/
     static u8_t au8_motorSpeed = 0;
@@ -187,11 +205,17 @@ void system_processing_and_update(void)
         /*In case of hazard ON command*/
         case HAZARD_ON_CMD:
 
+            /*Report hazard ON status*/
+            gu8_hazardStatus = HAZARD_STATUS_ON;
+
             /*Breaking from this case*/
             break;
 
         /*In case of hazard OFF command*/
         case HAZARD_OFF_CMD:
+
+            /*Report hazard OFF status*/
+            gu8_hazardStatus = HAZARD_STATUS_OFF;
 
             /*Breaking from this case*/
             break;
@@ -219,11 +243,76 @@ void system_processing_and_update(void)
 
             /*Breaking from this case*/
             break;
+    }
 
+    /*Checking the current hazard status ON or OFF*/
+    if(gu8_hazardStatus == HAZARD_STATUS_ON)
+    {
+        /*Increment hazard time counter by 1*/
+        gu8_hazardTimeCounter++;
+
+        /*If the hazard time comes toggle the rear LED*/
+        if(gu8_hazardTimeCounter >= HAZARD_TIMING)
+        {
+            /*Toggle rear LED*/
+            obj_rearLEDs.ledToggle();
+
+            /*Reset hazard time counter*/
+            gu8_hazardTimeCounter = 0;
+        }
+        else
+        {
+            /*Do nothing*/
+        }        
+    }
+    else if(gu8_hazardStatus == HAZARD_STATUS_OFF)
+    {
+        /*Turn OFF rear LEDs*/
+        obj_rearLEDs.ledOff();
+
+        /*Reset hazard time counter*/
+        gu8_hazardTimeCounter = 0;
+
+        /*Reset hazard report status*/
+        gu8_hazardStatus = 0;
+    }
+    else
+    {
+        /*Do nothing*/
     }
 
     /*Reset bluetooth data*/
     gu8_blthData = 0;
+
+    /*Return from this function*/
+    return;
+}
+
+void system_run(void)
+{
+    /*Static local variables used to hold the system tasks with specific periodicity*/
+    static task_t str_task1 = {system_getInput, TASK1_PERIODICITY};
+    static task_t str_task2 = {system_processing_and_update, TASK2_PERIODICITY};
+
+    /*Adding two tasks to TTS*/
+    obj_tts.addTask(str_task1);
+    obj_tts.addTask(str_task2);
+
+    /*Run scheduler*/
+    obj_tts.schedulerRun();
+    
+    /*Enable WDT with 65ms time to reset*/
+    WDT_ENABLE(RESET_65_0_MS);
+
+    /*System infinite loop*/
+    while(1)
+    {
+        /*Refresh WDT*/
+        WDT_REFRESH();
+
+        /*Sending the MCU to sleep mode*/
+        MCU_GTS();
+    }
 
     /*Return from this function*/
     return;

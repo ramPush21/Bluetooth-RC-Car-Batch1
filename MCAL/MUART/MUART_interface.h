@@ -17,12 +17,12 @@
 /*                                                   Interfacing macros                                                     */
 /****************************************************************************************************************************/
 
-/*Baud rate values for 8MHz*/
-#define BAUD_RATE_2400BPS      (207)
-#define BAUD_RATE_4800BPS      (103)
-#define BAUD_RATE_9600BPS      (51)
-#define BAUD_RATE_19200BPS     (25)
-#define BAUD_RATE_115200BPS    (3)
+/*Baud rate values for 4MHz*/
+#define BAUD_RATE_2400BPS      (103)
+#define BAUD_RATE_4800BPS      (51)
+#define BAUD_RATE_9600BPS      (25)
+#define BAUD_RATE_19200BPS     (12)
+#define BAUD_RATE_115200BPS    (1)
 
 /*Interrupt options*/
 #define NO_INTERRUPTS_USED     (0x00)

@@ -13,6 +13,7 @@
                 "HAL/HBUZZER",
                 "HAL/HMOT",
                 "HAL/HBLTH",
+                "SERVICE",
                 "APP"
             ],
             "defines": [

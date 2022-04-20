@@ -14,11 +14,13 @@ CPP_INC_DIR += -I../HAL/HLED
 CPP_INC_DIR += -I../HAL/HBUZZER
 CPP_INC_DIR += -I../HAL/HMOT
 CPP_INC_DIR += -I../HAL/HBLTH
+CPP_INC_DIR += -I../SERVICE
 CPP_INC_DIR += -I../APP
 
 #CPP source files
 CPP_SRC_FILES := ../main.cpp
 CPP_SRC_FILES += ../APP/Blutooth_RC_Car_program.cpp
+CPP_SRC_FILES += ../SERVICE/STTS_program.cpp
 CPP_SRC_FILES += ../HAL/HLED/HLED_program.cpp
 CPP_SRC_FILES += ../HAL/HBUZZER/HBUZZER_program.cpp
 CPP_SRC_FILES += ../HAL/HMOT/HMOT_program.cpp
@@ -30,6 +32,7 @@ CPP_SRC_FILES += ../MCAL/MUART/MUART_program.cpp
 #CPP object files
 CPP_OBJ_FILES := main.o
 CPP_OBJ_FILES += Blutooth_RC_Car_program.o
+CPP_OBJ_FILES += STTS_program.o
 CPP_OBJ_FILES += HLED_program.o
 CPP_OBJ_FILES += HBUZZER_program.o
 CPP_OBJ_FILES += HMOT_program.o
@@ -48,7 +51,7 @@ HEX_FILE := main.hex
 MAP_FILE := main.map
 
 #Defining the CPU parameters
-F_CPU := 8000000UL
+F_CPU := 4000000UL
 MCU := atmega8
 
 #Defining compiler parameters

@@ -13,12 +13,6 @@
 #ifndef __BLUETOOTH_RC_CAR_INTERFACE_H__
 #define __BLUETOOTH_RC_CAR_INTERFACE_H__
 
-/****************************************************************************************************************************/
-/*                                                       Interfacing macros                                                 */
-/****************************************************************************************************************************/
-
-#define MAX_MOTOR_SPEED          (255)
-#define MIN_MOTOR_SPEED          (0)
 
 /****************************************************************************************************************************/
 /*                                                Interfacing functions' prototypes                                         */
@@ -31,15 +25,9 @@
 void system_init(void);
 
 /**
- * @brief This function is used to get the system input command
+ * @brief This function is responsible for running the robot system
  * 
  */
-void system_getInput(void);
-
-/**
- * @brief This function is used to process the system input command and update the system actions
- * 
- */
-void system_processing_and_update(void);
+void system_run(void);
 
 #endif /*__BLUETOOTH_RC_CAR_INTERFACE_H__*/

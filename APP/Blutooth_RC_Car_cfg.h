@@ -17,6 +17,13 @@
 /*                                                       Application configuration                                          */
 /****************************************************************************************************************************/
 
+/*System tick time*/
+#define SYSTEM_TICK_TIME    (50)
+
+/*System tasks periodicity*/
+#define TASK1_PERIODICITY   (1)
+#define TASK2_PERIODICITY   (1)
+
 /*LED configuration*/
 #define FRONT_LED           (LED2)
 #define REAR_LED            (LED1)
