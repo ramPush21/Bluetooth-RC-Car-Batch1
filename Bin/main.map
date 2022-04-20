@@ -5,9 +5,9 @@ d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/av
 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
                               MDIO_program.o (__do_copy_data)
 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
-                              main.o (__do_clear_bss)
+                              Blutooth_RC_Car_program.o (__do_clear_bss)
 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
-                              main.o (__do_global_ctors)
+                              Blutooth_RC_Car_program.o (__do_global_ctors)
 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
                               d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o) (__tablejump2__)
 
@@ -27,13 +27,14 @@ Linker script and memory map
 
 LOAD d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr4/crtatmega8.o
 LOAD main.o
-LOAD MDIO_program.o
-LOAD MPWM_program.o
-LOAD MUART_program.o
+LOAD Blutooth_RC_Car_program.o
 LOAD HLED_program.o
 LOAD HBUZZER_program.o
 LOAD HMOT_program.o
 LOAD HBLTH_program.o
+LOAD MDIO_program.o
+LOAD MPWM_program.o
+LOAD MUART_program.o
 LOAD d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a
 LOAD d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr4\libm.a
 START GROUP
@@ -141,7 +142,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x5ba
+.text           0x00000000      0x67c
  *(.vectors)
  .vectors       0x00000000       0x26 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr4/crtatmega8.o
                 0x00000000                __vector_default
@@ -164,7 +165,7 @@ END GROUP
  *(.lowtext*)
                 0x00000026                __ctors_start = .
  *(.ctors)
- .ctors         0x00000026        0x2 main.o
+ .ctors         0x00000026        0x2 Blutooth_RC_Car_program.o
  .ctors         0x00000028        0x2 HLED_program.o
  .ctors         0x0000002a        0x2 HBUZZER_program.o
  .ctors         0x0000002c        0x2 HMOT_program.o
@@ -225,129 +226,134 @@ END GROUP
                 0x0000007a                __vector_16
                 0x0000007a                __vector_18
  .text          0x0000007c        0x0 main.o
- .text          0x0000007c      0x17e MDIO_program.o
-                0x0000007c                _ZN11mdioClass_t15setPinDirectionEh
-                0x0000012e                _ZN11mdioClass_t11setPinValueEh
-                0x00000192                _ZN11mdioClass_t14togglePinValueEv
-                0x000001c2                _ZN11mdioClass_t11getPinValueEPh
- .text          0x000001fa       0xa8 MPWM_program.o
-                0x000001fa                _ZN11mpwmClass_tC2Eh
-                0x000001fa                _ZN11mpwmClass_tC1Eh
-                0x0000024a                _ZN11mpwmClass_t9updatePWMEhh
- .text          0x000002a2       0xac MUART_program.o
-                0x000002a2                _ZN12muartClass_tC2Eth
-                0x000002a2                _ZN12muartClass_tC1Eth
-                0x000002b0                _ZN12muartClass_t8sendByteEh
-                0x000002be                _ZN12muartClass_t10sendStreamEPhh
-                0x000002da                _ZN12muartClass_t8recvByteEPh
-                0x000002e6                _ZN12muartClass_t18sendByte_interruptEh
-                0x000002f6                _ZN12muartClass_t18recvByte_interruptEPh
-                0x0000030c                __vector_13
-                0x0000032a                __vector_11
- .text          0x0000034e       0x64 HLED_program.o
-                0x0000034e                _ZN11hledClass_tC2Eh
-                0x0000034e                _ZN11hledClass_tC1Eh
-                0x00000368                _ZN11hledClass_t5ledOnEh
-                0x00000382                _ZN11hledClass_t6ledOffEh
-                0x0000039c                _ZN11hledClass_t9ledToggleEh
- .text          0x000003b2       0x18 HBUZZER_program.o
-                0x000003b2                _ZN14hbuzzerClass_tC1Ev
-                0x000003b2                _ZN14hbuzzerClass_tC2Ev
-                0x000003ba                _ZN14hbuzzerClass_t6buzzOnEv
-                0x000003c2                _ZN14hbuzzerClass_t7buzzOffEv
- .text          0x000003ca       0xd4 HMOT_program.o
-                0x000003ca                _ZN11hmotClass_tC2Eh
-                0x000003ca                _ZN11hmotClass_tC1Eh
-                0x0000041c                _ZN11hmotClass_t11updateMotorEhh
- .text          0x0000049e       0x1c HBLTH_program.o
-                0x0000049e                _ZN12hblthClass_tC1Ev
-                0x0000049e                _ZN12hblthClass_tC2Ev
-                0x000004ae                _ZN12hblthClass_t7getDataEPh
-                0x000004b4                _ZN12hblthClass_t17getData_interruptEPh
- .text          0x000004ba        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
- .text          0x000004ba        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
- .text          0x000004ba        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
- .text          0x000004ba        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
- .text          0x000004ba        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
-                0x000004ba                . = ALIGN (0x2)
+ .text          0x0000007c       0xdc Blutooth_RC_Car_program.o
+                0x0000007c                _Z11system_initv
+                0x0000007e                _Z15system_getInputv
+                0x00000088                _Z28system_processing_and_updatev
+ .text          0x00000158       0x74 HLED_program.o
+                0x00000158                _ZN11hledClass_tC1Eh
+                0x00000158                _ZN11hledClass_tC2Eh
+                0x00000176                _ZN11hledClass_t5ledOnEv
+                0x00000194                _ZN11hledClass_t6ledOffEv
+                0x000001b2                _ZN11hledClass_t9ledToggleEv
+ .text          0x000001cc       0x18 HBUZZER_program.o
+                0x000001cc                _ZN14hbuzzerClass_tC1Ev
+                0x000001cc                _ZN14hbuzzerClass_tC2Ev
+                0x000001d4                _ZN14hbuzzerClass_t6buzzOnEv
+                0x000001dc                _ZN14hbuzzerClass_t7buzzOffEv
+ .text          0x000001e4       0xd4 HMOT_program.o
+                0x000001e4                _ZN11hmotClass_tC2Eh
+                0x000001e4                _ZN11hmotClass_tC1Eh
+                0x00000236                _ZN11hmotClass_t11updateMotorEhh
+ .text          0x000002b8       0x1c HBLTH_program.o
+                0x000002b8                _ZN12hblthClass_tC1Ev
+                0x000002b8                _ZN12hblthClass_tC2Ev
+                0x000002c8                _ZN12hblthClass_t7getDataEPh
+                0x000002ce                _ZN12hblthClass_t17getData_interruptEPh
+ .text          0x000002d4      0x17e MDIO_program.o
+                0x000002d4                _ZN11mdioClass_t15setPinDirectionEh
+                0x00000386                _ZN11mdioClass_t11setPinValueEh
+                0x000003ea                _ZN11mdioClass_t14togglePinValueEv
+                0x0000041a                _ZN11mdioClass_t11getPinValueEPh
+ .text          0x00000452       0xa8 MPWM_program.o
+                0x00000452                _ZN11mpwmClass_tC2Eh
+                0x00000452                _ZN11mpwmClass_tC1Eh
+                0x000004a2                _ZN11mpwmClass_t9updatePWMEhh
+ .text          0x000004fa       0xac MUART_program.o
+                0x000004fa                _ZN12muartClass_tC2Eth
+                0x000004fa                _ZN12muartClass_tC1Eth
+                0x00000508                _ZN12muartClass_t8sendByteEh
+                0x00000516                _ZN12muartClass_t10sendStreamEPhh
+                0x00000532                _ZN12muartClass_t8recvByteEPh
+                0x0000053e                _ZN12muartClass_t18sendByte_interruptEh
+                0x0000054e                _ZN12muartClass_t18recvByte_interruptEPh
+                0x00000564                __vector_13
+                0x00000582                __vector_11
+ .text          0x000005a6        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+ .text          0x000005a6        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+ .text          0x000005a6        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+ .text          0x000005a6        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+ .text          0x000005a6        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x000005a6                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x000004ba       0x5e main.o
-                0x000004ba                main
- .text.startup  0x00000518       0x18 HLED_program.o
- .text.startup  0x00000530        0xe HBUZZER_program.o
- .text.startup  0x0000053e       0x4a HMOT_program.o
- .text.startup  0x00000588       0x22 HBLTH_program.o
+ .text.startup  0x000005a6        0x8 main.o
+                0x000005a6                main
+ .text.startup  0x000005ae       0x2c Blutooth_RC_Car_program.o
+ .text.startup  0x000005da       0x18 HLED_program.o
+ .text.startup  0x000005f2        0xe HBUZZER_program.o
+ .text.startup  0x00000600       0x4a HMOT_program.o
+ .text.startup  0x0000064a       0x22 HBLTH_program.o
  .text.libgcc.mul
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.div
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
- .text.libgcc   0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
- .text.libgcc   0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .text.libgcc.mul
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.div
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
- .text.libgcc   0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.prologue
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.builtins
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.fmul
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
  .text.libgcc.mul
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.div
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
- .text.libgcc   0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+ .text.libgcc   0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.prologue
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.builtins
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.fmul
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.fixed
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
  .text.libgcc.mul
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
  .text.libgcc.div
-                0x000005aa        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
- .text.libgcc   0x000005aa        0xc d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
-                0x000005aa                __tablejump2__
+                0x0000066c        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+ .text.libgcc   0x0000066c        0xc d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x0000066c                __tablejump2__
  .text.libgcc.prologue
-                0x000005b6        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x00000678        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
  .text.libgcc.builtins
-                0x000005b6        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x00000678        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
  .text.libgcc.fmul
-                0x000005b6        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x00000678        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
  .text.libgcc.fixed
-                0x000005b6        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
-                0x000005b6                . = ALIGN (0x2)
+                0x00000678        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+                0x00000678                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000005b6        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
-                0x000005b6                _exit
-                0x000005b6                exit
+ .fini9         0x00000678        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+                0x00000678                _exit
+                0x00000678                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -366,25 +372,26 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000005b6        0x4 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+ .fini0         0x00000678        0x4 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x000005ba                _etext = .
+                0x0000067c                _etext = .
 
-.data           0x00800060       0x14 load address 0x000005ba
+.data           0x00800060       0x14 load address 0x0000067c
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr4/crtatmega8.o
  .data          0x00800060        0x0 main.o
+ .data          0x00800060        0x0 Blutooth_RC_Car_program.o
+ .data          0x00800060        0x0 HLED_program.o
+ .data          0x00800060        0x0 HBUZZER_program.o
+ .data          0x00800060        0x0 HMOT_program.o
+ .data          0x00800060        0x0 HBLTH_program.o
  .data          0x00800060       0x12 MDIO_program.o
                 0x00800060                gu8Arr_pinArray
                 0x00800066                gu8Arr_portArray
                 0x0080006c                gu8Arr_ddrArray
  .data          0x00800072        0x0 MPWM_program.o
  .data          0x00800072        0x1 MUART_program.o
- .data          0x00800073        0x0 HLED_program.o
- .data          0x00800073        0x0 HBUZZER_program.o
- .data          0x00800073        0x0 HMOT_program.o
- .data          0x00800073        0x0 HBLTH_program.o
  .data          0x00800073        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
  .data          0x00800073        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
  .data          0x00800073        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
@@ -400,51 +407,55 @@ END GROUP
                 0x00800074                _edata = .
                 0x00800074                PROVIDE (__data_end, .)
 
-.bss            0x00800074       0x1e
+.bss            0x00800074       0x23
                 0x00800074                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800074        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr4/crtatmega8.o
- .bss           0x00800074        0x3 main.o
-                0x00800074                obj_mot2
-                0x00800075                obj_mot1
-                0x00800076                obj_blthComm
- .bss           0x00800077        0x0 MDIO_program.o
- .bss           0x00800077        0x0 MPWM_program.o
- .bss           0x00800077        0x2 MUART_program.o
- .bss           0x00800079        0x4 HLED_program.o
-                0x00800079                gobj_led2Pin
-                0x0080007b                gobj_led1Pin
- .bss           0x0080007d        0x2 HBUZZER_program.o
-                0x0080007d                gobj_buzzerPin
- .bss           0x0080007f        0xe HMOT_program.o
-                0x0080007f                motor_2_pwmChannel
-                0x00800080                motor_1_pwmChannel
-                0x00800081                motor_2_dioIn_2_pin
-                0x00800083                motor_2_dioIn_1_pin
-                0x00800085                motor_1_dioIn_2_pin
-                0x00800087                motor_1_dioIn_1_pin
-                0x00800089                motor_2_dioEnPin
-                0x0080008b                motor_1_dioEnPin
- .bss           0x0080008d        0x5 HBLTH_program.o
-                0x0080008d                obj_blthRxPin_PD1
-                0x0080008f                obj_blthTxPin_PD0
-                0x00800091                obj_uart
- .bss           0x00800092        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
- .bss           0x00800092        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
- .bss           0x00800092        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
- .bss           0x00800092        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
- .bss           0x00800092        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
+ .bss           0x00800074        0x0 main.o
+ .bss           0x00800074        0x8 Blutooth_RC_Car_program.o
+                0x00800074                obj_leftMotor
+                0x00800075                obj_rightMotor
+                0x00800076                obj_rearLEDs
+                0x00800077                obj_frontLEDs
+                0x00800078                obj_buzzer
+                0x00800079                obj_blthCommunication
+ .bss           0x0080007c        0x4 HLED_program.o
+                0x0080007c                gobj_led2Pin
+                0x0080007e                gobj_led1Pin
+ .bss           0x00800080        0x2 HBUZZER_program.o
+                0x00800080                gobj_buzzerPin
+ .bss           0x00800082        0xe HMOT_program.o
+                0x00800082                motor_2_pwmChannel
+                0x00800083                motor_1_pwmChannel
+                0x00800084                motor_2_dioIn_2_pin
+                0x00800086                motor_2_dioIn_1_pin
+                0x00800088                motor_1_dioIn_2_pin
+                0x0080008a                motor_1_dioIn_1_pin
+                0x0080008c                motor_2_dioEnPin
+                0x0080008e                motor_1_dioEnPin
+ .bss           0x00800090        0x5 HBLTH_program.o
+                0x00800090                obj_blthRxPin_PD1
+                0x00800092                obj_blthTxPin_PD0
+                0x00800094                obj_uart
+ .bss           0x00800095        0x0 MDIO_program.o
+ .bss           0x00800095        0x0 MPWM_program.o
+ .bss           0x00800095        0x2 MUART_program.o
+ .bss           0x00800097        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_exit.o)
+ .bss           0x00800097        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_copy_data.o)
+ .bss           0x00800097        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_clear_bss.o)
+ .bss           0x00800097        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_ctors.o)
+ .bss           0x00800097        0x0 d:/documents/embedded systems/tooling/toolchains/avr/bin/../lib/gcc/avr/7.3.0/avr4\libgcc.a(_tablejump2.o)
  *(.bss*)
  *(COMMON)
-                0x00800092                PROVIDE (__bss_end, .)
-                0x000005ba                __data_load_start = LOADADDR (.data)
-                0x000005ce                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800097                PROVIDE (__bss_end, .)
+                0x0000067c                __data_load_start = LOADADDR (.data)
+                0x00000690                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800092        0x0
+.noinit         0x00800097        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800092                _end = .
+                0x00800097                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -488,13 +499,14 @@ END GROUP
  *(.comment)
  .comment       0x00000000       0x11 main.o
                                  0x12 (size before relaxing)
- .comment       0x00000011       0x12 MDIO_program.o
- .comment       0x00000011       0x12 MPWM_program.o
- .comment       0x00000011       0x12 MUART_program.o
+ .comment       0x00000011       0x12 Blutooth_RC_Car_program.o
  .comment       0x00000011       0x12 HLED_program.o
  .comment       0x00000011       0x12 HBUZZER_program.o
  .comment       0x00000011       0x12 HMOT_program.o
  .comment       0x00000011       0x12 HBLTH_program.o
+ .comment       0x00000011       0x12 MDIO_program.o
+ .comment       0x00000011       0x12 MPWM_program.o
+ .comment       0x00000011       0x12 MUART_program.o
 
 .note.gnu.avr.deviceinfo
                 0x00000000       0x3c

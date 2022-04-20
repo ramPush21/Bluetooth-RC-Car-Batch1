@@ -31,7 +31,7 @@ mdioClass_t gobj_led2Pin(LED2_PORT, LED2_PIN);
 /*                                Functions' defintions                               */
 /**************************************************************************************/
 
-hledClass_t::hledClass_t(u8_t au8_ledNumber)
+hledClass_t::hledClass_t(u8_t au8_ledNumber):au8_prv_ledNumber(au8_ledNumber)
 {
     /*Switching over LED number*/
     switch (au8_ledNumber)
@@ -62,10 +62,10 @@ hledClass_t::hledClass_t(u8_t au8_ledNumber)
     }
 }
 
-void hledClass_t::ledOn(u8_t au8_ledNumber)
+void hledClass_t::ledOn(void)
 {
     /*Switching over LED number*/
-    switch (au8_ledNumber)
+    switch (au8_prv_ledNumber)
     {
         /*In case of LED 1*/
         case LED1:
@@ -95,10 +95,10 @@ void hledClass_t::ledOn(u8_t au8_ledNumber)
     /*Return from this function*/
     return;
 }
-void hledClass_t::ledOff(u8_t au8_ledNumber)
+void hledClass_t::ledOff(void)
 {
     /*Switching over LED number*/
-    switch (au8_ledNumber)
+    switch (au8_prv_ledNumber)
     {
         /*In case of LED 1*/
         case LED1:
@@ -129,10 +129,10 @@ void hledClass_t::ledOff(u8_t au8_ledNumber)
     return;
 }
 
-void hledClass_t::ledToggle(u8_t au8_ledNumber)
+void hledClass_t::ledToggle(void)
 {
     /*Switching over LED number*/
-    switch (au8_ledNumber)
+    switch (au8_prv_ledNumber)
     {
         /*In case of LED 1*/
         case LED1:

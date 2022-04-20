@@ -10,8 +10,8 @@
  */
 
 /*Header file guard*/
-#ifndef __HBLTH_CONFIG_H__
-#define __HBLTH_CONFIG_H__
+#ifndef __HBLTH_CFG_H__
+#define __HBLTH_CFG_H__
 
 /****************************************************************************************************************************/
 /*                                                       Bluetooth configuration                                            */
@@ -21,4 +21,4 @@
 #define BLTH_TX_PIN        (PIN0)
 #define BLTH_RX_PIN        (PIN1)
 
-#endif /*__HBLTH_CONFIG_H__*/
+#endif /*__HBLTH_CFG_H__*/

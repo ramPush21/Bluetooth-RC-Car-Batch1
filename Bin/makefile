@@ -14,26 +14,29 @@ CPP_INC_DIR += -I../HAL/HLED
 CPP_INC_DIR += -I../HAL/HBUZZER
 CPP_INC_DIR += -I../HAL/HMOT
 CPP_INC_DIR += -I../HAL/HBLTH
+CPP_INC_DIR += -I../APP
 
 #CPP source files
 CPP_SRC_FILES := ../main.cpp
-CPP_SRC_FILES += ../MCAL/MDIO/MDIO_program.cpp
-CPP_SRC_FILES += ../MCAL/MPWM/MPWM_program.cpp
-CPP_SRC_FILES += ../MCAL/MUART/MUART_program.cpp
+CPP_SRC_FILES += ../APP/Blutooth_RC_Car_program.cpp
 CPP_SRC_FILES += ../HAL/HLED/HLED_program.cpp
 CPP_SRC_FILES += ../HAL/HBUZZER/HBUZZER_program.cpp
 CPP_SRC_FILES += ../HAL/HMOT/HMOT_program.cpp
 CPP_SRC_FILES += ../HAL/HBLTH/HBLTH_program.cpp
+CPP_SRC_FILES += ../MCAL/MDIO/MDIO_program.cpp
+CPP_SRC_FILES += ../MCAL/MPWM/MPWM_program.cpp
+CPP_SRC_FILES += ../MCAL/MUART/MUART_program.cpp
 
 #CPP object files
 CPP_OBJ_FILES := main.o
-CPP_OBJ_FILES += MDIO_program.o
-CPP_OBJ_FILES += MPWM_program.o
-CPP_OBJ_FILES += MUART_program.o
+CPP_OBJ_FILES += Blutooth_RC_Car_program.o
 CPP_OBJ_FILES += HLED_program.o
 CPP_OBJ_FILES += HBUZZER_program.o
 CPP_OBJ_FILES += HMOT_program.o
 CPP_OBJ_FILES += HBLTH_program.o
+CPP_OBJ_FILES += MDIO_program.o
+CPP_OBJ_FILES += MPWM_program.o
+CPP_OBJ_FILES += MUART_program.o
 
 #ELF file name
 ELF_FILE := main.elf

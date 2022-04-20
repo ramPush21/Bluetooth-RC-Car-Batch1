@@ -12,7 +12,8 @@
                 "HAL/HLED",
                 "HAL/HBUZZER",
                 "HAL/HMOT",
-                "HAL/HBLTH"
+                "HAL/HBLTH",
+                "APP"
             ],
             "defines": [
                 "_DEBUG",

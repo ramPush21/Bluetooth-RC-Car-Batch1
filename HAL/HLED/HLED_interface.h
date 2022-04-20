@@ -39,23 +39,26 @@ class hledClass_t
         /**
          * @brief This function is responsible for turning ON the LED
          * 
-         * @param au8_ledNumber 
          */
-        void ledOn(u8_t au8_ledNumber);
+        void ledOn(void);
 
         /**
          * @brief This function is responsible for turning OFF the LED
          * 
-         * @param au8_ledNumber 
          */
-        void ledOff(u8_t au8_ledNumber);
+        void ledOff(void);
 
         /**
          * @brief This function is responsible for toggling the LED
          * 
-         * @param au8_ledNumber 
          */
-        void ledToggle(u8_t au8_ledNumber);
+        void ledToggle(void);
+
+    /*Private members*/
+    private:
+
+        /*Private variable used to hold the chosen LED number*/
+        u8_t au8_prv_ledNumber;
 };
 
 #endif /*__HLED_INTERFACE_H__*/
